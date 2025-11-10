@@ -13,22 +13,24 @@ func main() {
 		return
 	}
 
-	fileContents, err := os.Open(os.Args[1])
-	if err != nil {
-		log.Fatal(err)
+	//update to allow multiple files
+	for _, filename := range os.Args[1:] {
+		fileContents, err := os.Open(filename)
+		if err != nil {
+			log.Fatal(err)
+		}
+		scanner := bufio.NewScanner(fileContents)
+		scanner.Split(bufio.ScanWords)
+		var wordCount int
+
+		for scanner.Scan() {
+			wordCount++
+		}
+
+		if err := scanner.Err(); err != nil {
+			log.Fatal(err)
+		}
+		fileContents.Close()
+		fmt.Printf("%s found %d words \n", filename, wordCount)
 	}
-
-	scanner := bufio.NewScanner(fileContents)
-	scanner.Split(bufio.ScanWords)
-	var wordCount int
-
-	for scanner.Scan() {
-		wordCount++
-	}
-
-	if err := scanner.Err(); err != nil {
-		log.Fatal(err)
-	}
-
-	fmt.Println("found", wordCount, "words")
 }
