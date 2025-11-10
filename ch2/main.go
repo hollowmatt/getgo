@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"log"
 	"os"
-	"strings"
 )
 
 func main() {
@@ -20,11 +19,11 @@ func main() {
 	}
 
 	scanner := bufio.NewScanner(fileContents)
+	scanner.Split(bufio.ScanWords)
 	var wordCount int
+
 	for scanner.Scan() {
-		line := scanner.Text()
-		words := strings.Fields(line)
-		wordCount += len(words)
+		wordCount++
 	}
 
 	if err := scanner.Err(); err != nil {
