@@ -36,4 +36,11 @@ func main() {
 	fmt.Println("The address of a is", intPointer)
 	// prints the value at that address
 	fmt.Println("The value of a is", *intPointer)
+
+	//now update and repeat
+	*intPointer = *intPointer + 8
+	fmt.Println("The new value of a is", a)
+	fmt.Println("The address of the pointer is still", intPointer)
+	fmt.Println("The value at the pointer is now", *intPointer)
+
 }
