@@ -28,5 +28,12 @@ func main() {
 	}
 
 	// 3.7 Pointers
+	a := 42
+	//& denotes the address of
+	intPointer := &a
 
+	// prints the address and the value at that address
+	fmt.Println("The address of a is", intPointer)
+	// prints the value at that address
+	fmt.Println("The value of a is", *intPointer)
 }
