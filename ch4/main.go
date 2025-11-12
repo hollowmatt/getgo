@@ -11,6 +11,7 @@ func main() {
 }
 
 // 4.1 Arrays
+// Arrays are fixed size collections of elements of the same type
 func arrays() {
 	fmt.Println("4.1 Arrays")
 	// declare and initialize an array of 5 integers
@@ -48,11 +49,15 @@ func arrays() {
 }
 
 // 4.2 Slices
+// Slices are dynamic, flexible views into the elements of an array (and are ordered)
+// Use slices to make lists
 func slices() {
 	fmt.Println("4.2 Slices")
 }
 
 // 4.3 Maps
+// Maps are unordered collections of key-value pairs - like dictionaries in other languages
+// use maps to make sets
 func maps() {
 	fmt.Println("4.1 Maps")
 }
