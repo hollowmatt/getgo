@@ -75,6 +75,10 @@ func slices(printElements bool) {
 		madeSlice := make([]float64, 5) //length 5
 		fmt.Println(madeSlice)
 
+		sInt := []int{1, 2, 3}
+		fmt.Println(sInt)
+		addOneToAll(&sInt)
+		fmt.Println(sInt)
 	}
 }
 
@@ -84,5 +88,12 @@ func slices(printElements bool) {
 func maps(printElements bool) {
 	if printElements {
 		fmt.Println("4.1 Maps")
+	}
+}
+
+func addOneToAll(sInt *[]int) {
+	*sInt = append(*sInt, 0)
+	for i := range *sInt {
+		(*sInt)[i] += 1
 	}
 }
