@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"sort"
 )
 
 // starting point for chapter 4
@@ -58,6 +59,22 @@ func arrays(printElements bool) {
 func slices(printElements bool) {
 	if printElements {
 		fmt.Println("4.2 Slices")
+		//declare and initialize a slice of strings with literals
+		//looks just like an array but without the size
+		s := []string{"apple", "banana", "cherry"}
+		fmt.Println(s)
+		//now an integer slice
+		sliceInt := []int{10, 30, 50, 40, 20}
+		sliceInt = append(sliceInt, 60) //add an element
+		//sort it
+		sort.Slice(sliceInt, func(i, j int) bool {
+			return sliceInt[i] < sliceInt[j]
+		})
+		fmt.Println(sliceInt)
+		//declaring with make
+		madeSlice := make([]float64, 5) //length 5
+		fmt.Println(madeSlice)
+
 	}
 }
 
