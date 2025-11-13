@@ -74,11 +74,19 @@ func slices(printElements bool) {
 		//declaring with make
 		madeSlice := make([]float64, 5) //length 5
 		fmt.Println(madeSlice)
-
+		//appending to it in a function, pass by reference
 		sInt := []int{1, 2, 3}
 		fmt.Println(sInt)
 		addOneToAll(&sInt)
 		fmt.Println(sInt)
+		//slicing a slice
+		subSlice := sliceInt[1:4] //from index 1 to (4-1)
+		fmt.Println(subSlice)     //should print [20 30 40]
+		fmt.Println("Original slice:", sliceInt)
+		subSlice = append(subSlice, 25)
+		fmt.Println("After appending to subslice:")
+		fmt.Println("Subslice:", subSlice)
+		fmt.Println("Original slice:", sliceInt) //original slice is unchanged
 	}
 }
 
