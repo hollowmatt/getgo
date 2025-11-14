@@ -9,8 +9,8 @@ import (
 func main() {
 	fmt.Println("Chapter 4")
 	arrays(false)
-	slices(true)
-	maps(false)
+	slices(false)
+	maps(true)
 }
 
 // 4.1 Arrays
@@ -86,7 +86,7 @@ func slices(printElements bool) {
 		subSlice = append(subSlice, 25)
 		fmt.Println("After appending to subslice:")
 		fmt.Println("Subslice:", subSlice)
-		fmt.Println("Original slice:", sliceInt) //original slice is unchanged
+		fmt.Println("Original slice:", sliceInt) //original slice has value inserted.
 	}
 }
 
