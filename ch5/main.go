@@ -42,8 +42,16 @@ type IngredientMeasurement struct {
 
 type IngredientList []IngredientMeasurement
 type Step struct {
+	Description    string
+	IngredientList IngredientList
+}
+
+type Recipe struct {
+	Title       string
 	Description string
-	Ingredient
+	Yield       int
+	Ingredients IngredientList
+	Steps       []Step
 }
 
 func main() {
