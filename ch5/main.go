@@ -4,12 +4,7 @@ import (
 	"fmt"
 )
 
-// Define constants for measurement systems and units - go has no enums
-const (
-	Metric   MeasurementSystem = "Metric"
-	Imperial MeasurementSystem = "Imperial"
-)
-
+// Define constants for measurement units - go has no enums
 const (
 	Gram     Unit = "gram"
 	Kilogram Unit = "kilogram"
@@ -27,14 +22,34 @@ const (
 type MeasurementSystem string
 type Unit string
 type Magnitude float32
-
+type Ingredient string
 type Measurement struct {
 	Unit      Unit
 	Magnitude Magnitude
 }
 
+// embedded types in a type.
+type MetricWeight struct{ Measurement }
+type ImperialWeight struct{ Measurement }
+type MetricVolume struct{ Measurement }
+type ImperialVolume struct{ Measurement }
+
+// complex types
+type IngredientMeasurement struct {
+	Ingredient  Ingredient
+	Measurement Measurement
+}
+
+type IngredientList []IngredientMeasurement
+type Step struct {
+	Description string
+	Ingredient
+}
+
 func main() {
 	fmt.Println("Chapter 5 - Types")
-	meas := Measurement{Unit: Kilogram, Magnitude: 2.5}
-	fmt.Printf("Measurement: %.2f %s\n", meas.Magnitude, meas.Unit)
+	mw := MetricWeight{Measurement{Unit: Gram, Magnitude: 500}}
+	fmt.Printf("Metric Weight: %.2f %s\n", mw.Magnitude, mw.Unit)
+	mv := MetricVolume{Measurement{Unit: Litre, Magnitude: 1.5}}
+	fmt.Printf("Metric Volume: %.2f %s\n", mv.Magnitude, mv.Unit)
 }
