@@ -5,6 +5,11 @@ import (
 	"sort"
 )
 
+type person struct {
+	name string
+	age  int
+}
+
 // starting point for chapter 4
 func main() {
 	fmt.Println("Chapter 4")
@@ -96,16 +101,19 @@ func slices(printElements bool) {
 func maps(printElements bool) {
 	if printElements {
 		fmt.Println("4.1 Maps")
-		type person struct {
-			name string
-			age  int
-		}
+
 		people := make(map[string]person) //map with email string as key and person struct as value
 		people["joe@blow.com"] = person{name: "Joe Blow", age: 30}
-		people["fretwes@gmail.com"] = person{name: "Jane Doe", age: 35}
+		people["jane@doe.com"] = person{name: "Jane Doe", age: 35}
 		for email, p := range people {
 			fmt.Printf("Email: %s, Name: %s, Age: %d\n", email, p.name, p.age)
 		}
+		people["robin@hood.co.uk"] = person{name: "Robin Hood", age: 40} //add another
+		fmt.Println(people)
+		delete(people, "robin@hood.co.uk") //remove by key
+		fmt.Println(people)
+		//adding via function - pass by reference
+		addUser(&people, "robin@hood.co.uk", "Robin Hood", 40)
 		fmt.Println(people)
 	}
 }
@@ -115,4 +123,9 @@ func addOneToAll(sInt *[]int) {
 	for i := range *sInt {
 		(*sInt)[i] += 1
 	}
+}
+
+// addUser adds a new person to the users map, passed by reference
+func addUser(users *map[string]person, email string, who string, yrs int) {
+	(*users)[email] = person{name: who, age: yrs}
 }
