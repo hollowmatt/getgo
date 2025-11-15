@@ -96,6 +96,17 @@ func slices(printElements bool) {
 func maps(printElements bool) {
 	if printElements {
 		fmt.Println("4.1 Maps")
+		type person struct {
+			name string
+			age  int
+		}
+		people := make(map[string]person) //map with email string as key and person struct as value
+		people["joe@blow.com"] = person{name: "Joe Blow", age: 30}
+		people["fretwes@gmail.com"] = person{name: "Jane Doe", age: 35}
+		for email, p := range people {
+			fmt.Printf("Email: %s, Name: %s, Age: %d\n", email, p.name, p.age)
+		}
+		fmt.Println(people)
 	}
 }
 
