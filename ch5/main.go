@@ -56,8 +56,43 @@ type Recipe struct {
 
 func main() {
 	fmt.Println("Chapter 5 - Types")
-	mw := MetricWeight{Measurement{Unit: Gram, Magnitude: 500}}
-	fmt.Printf("Metric Weight: %.2f %s\n", mw.Magnitude, mw.Unit)
-	mv := MetricVolume{Measurement{Unit: Litre, Magnitude: 1.5}}
-	fmt.Printf("Metric Volume: %.2f %s\n", mv.Magnitude, mv.Unit)
+	ingredients := IngredientList{
+		{Ingredient: "Flour", Measurement: Measurement{Unit: Gram, Magnitude: 200}},
+		{Ingredient: "Sugar", Measurement: Measurement{Unit: Gram, Magnitude: 100}},
+		{Ingredient: "Butter", Measurement: Measurement{Unit: Gram, Magnitude: 50}},
+	}
+	steps := []Step{
+		{
+			Description: "Mix dry ingredients",
+			IngredientList: IngredientList{
+				{Ingredient: "Flour", Measurement: Measurement{Unit: Gram, Magnitude: 200}},
+				{Ingredient: "Sugar", Measurement: Measurement{Unit: Gram, Magnitude: 100}},
+			},
+		},
+		{
+			Description: "Add butter and mix",
+			IngredientList: IngredientList{
+				{Ingredient: "Butter", Measurement: Measurement{Unit: Gram, Magnitude: 50}},
+			},
+		},
+	}
+	recipe := Recipe{
+		Title:       "Simple Cake",
+		Description: "A simple cake recipe",
+		Yield:       1,
+		Ingredients: ingredients,
+		Steps:       steps,
+	}
+	fmt.Printf("Recipe: %s\nDescription: %s\nYield: %d\n", recipe.Title, recipe.Description, recipe.Yield)
+	fmt.Println("Ingredients:")
+	for _, im := range recipe.Ingredients {
+		fmt.Printf("- %s: %.2f %s\n", im.Ingredient, im.Measurement.Magnitude, im.Measurement.Unit)
+	}
+	fmt.Println("Steps:")
+	for i, step := range recipe.Steps {
+		fmt.Printf("%d. %s\n", i+1, step.Description)
+		for _, im := range step.IngredientList {
+			fmt.Printf("   - %s: %.2f %s\n", im.Ingredient, im.Measurement.Magnitude, im.Measurement.Unit)
+		}
+	}
 }
