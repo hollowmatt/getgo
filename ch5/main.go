@@ -6,17 +6,17 @@ import (
 
 // Define constants for measurement units - go has no enums
 const (
-	Gram     Unit = "gram"
-	Kilogram Unit = "kilogram"
-	Pound    Unit = "pound"
-	Ounce    Unit = "ounce"
-	Litre    Unit = "litre"
-	Gallon   Unit = "gallon"
-	Cup      Unit = "cup"
-	Pint     Unit = "pint"
-	Quart    Unit = "quart"
-	Tsp      Unit = "teaspoon"
-	Tbl      Unit = "tablespoon"
+	Gram       Unit = "gram"
+	Kilogram   Unit = "kilogram"
+	Pound      Unit = "pound"
+	Ounce      Unit = "ounce"
+	Litre      Unit = "litre"
+	Gallon     Unit = "gallon"
+	Cup        Unit = "cup"
+	Pint       Unit = "pint"
+	Quart      Unit = "quart"
+	Teaspoon   Unit = "teaspoon"
+	Tablespoon Unit = "tablespoon"
 )
 
 type MeasurementSystem string
@@ -54,7 +54,45 @@ type Recipe struct {
 	Steps       []Step
 }
 
+func (u Unit) String() string {
+	switch u {
+	case Gram:
+		return "g"
+	case Kilogram:
+		return "kg"
+	case Pound:
+		return "lb"
+	case Ounce:
+		return "oz"
+	case Litre:
+		return "L"
+	case Gallon:
+		return "gal"
+	case Cup:
+		return "cup"
+	case Pint:
+		return "pt"
+	case Quart:
+		return "qt"
+	case Teaspoon:
+		return "tsp"
+	case Tablespoon:
+		return "tbsp"
+	default:
+		return "unknown unit"
+	}
+}
+
 func main() {
+	var section string = "part1"
+	if section == "part1" {
+		makeCake()
+	} else {
+		pointers()
+	}
+}
+
+func makeCake() {
 	fmt.Println("Chapter 5 - Types")
 	ingredients := IngredientList{
 		{Ingredient: "Flour", Measurement: Measurement{Unit: Gram, Magnitude: 200}},
@@ -95,4 +133,13 @@ func main() {
 			fmt.Printf("   - %s: %.2f %s\n", im.Ingredient, im.Measurement.Magnitude, im.Measurement.Unit)
 		}
 	}
+}
+func pointers() {
+	var i = 42
+	var j = &i // j is a pointer to an int, &i gets the memory address of i
+	fmt.Println("Value of i:", i)
+	fmt.Println("Address of i:", j)
+	fmt.Println("Value at address j:", *j) // *j dereferences the pointer to get the value
+	*j = 21                                // change value at address j
+	fmt.Println("New value of i:", i)
 }
